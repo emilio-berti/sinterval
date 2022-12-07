@@ -35,11 +35,13 @@ vals |>
                 names_to = "database") |> 
    ggplot() +
    aes(CIELO, value, col = database) +
-   geom_point(alpha = .05) +
+   geom_point(alpha = .05, shape = 20) +
    geom_smooth(aes(groups = database), col = "grey20") +
    scale_color_manual(values = c("darkred", "dodgerblue3")) +
-   ylab("Precipitation\ndriest quarter") +
+   ylab("Precipitation of driest quarter") +
    theme_bw()
+
+ggsave("scatterplot.png", width = 4, height = 3, dpi = 600)
 
 wc <- with(vals, lm(CIELO ~ WorldClim))
 chelsa <- with(vals, lm(CIELO ~ CHELSA))
